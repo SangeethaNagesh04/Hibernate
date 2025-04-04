@@ -7,10 +7,9 @@ public class Main {
     public static void main(String[] args) {
 
         Student s = new Student();
-        s.setRollNo(102);
-        s.setSname("sampi");
-        s.setAge(30);
-
+        s.setRollNo(103);
+        s.setSname("vinu");
+        s.setAge(52);
 
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(Student.class);
@@ -19,13 +18,13 @@ public class Main {
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
 
-        Transaction transaction = session.beginTransaction();
+        Student s1 = session.get(Student.class, 101);
 
-        session.persist(s);
-        transaction.commit();
+        System.out.println(s1);
 
         session.close();
         sf.close();
+
 
     }
 }
