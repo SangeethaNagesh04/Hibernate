@@ -14,6 +14,12 @@ public class Main {
         a1.setAname("sangeetha");
         a1.setTech("java");
 
+        Alien a2 = new Alien();
+        a2.setAid(102);
+        a2.setAname("sampi");
+        a2.setTech("python");
+
+
         Laptop l1 = new Laptop();
         l1.setLid(1);
         l1.setBrand("Asus");
@@ -24,10 +30,11 @@ public class Main {
         l2.setBrand("Hp");
         l2.setRam(32);
 
-        l1.setAlien(a1);
-        l2.setAlien(a1);
-        a1.setLaptop(List.of(l1,l2));
+        l1.setAlien(List.of(a1,a2));
+        l2.setAlien(List.of(a1,a2));
 
+        a1.setLaptop(List.of(l1,l2));
+        a2.setLaptop(List.of(l1,l2));
 
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(Alien.class);
@@ -42,6 +49,7 @@ public class Main {
         session.persist(l1);
         session.persist(l2);
         session.persist(a1);
+        session.persist(a2);
 
         transaction.commit();
 
