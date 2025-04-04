@@ -1,5 +1,8 @@
 import jakarta.persistence.*;
 
+import javax.swing.*;
+import java.util.List;
+
 @Entity
 public class Alien {
 
@@ -7,7 +10,8 @@ public class Alien {
     private int aid;
     private String aname;
     private String tech;
-    private Laptop laptop;
+    @OneToMany(mappedBy = "alien")
+    private List<Laptop> laptop;
 
     public int getAid() {
         return aid;
@@ -33,11 +37,11 @@ public class Alien {
         this.tech = tech;
     }
 
-    public Laptop getLaptop() {
+    public List<Laptop> getLaptop() {
         return laptop;
     }
 
-    public void setLaptop(Laptop laptop) {
+    public void setLaptop(List<Laptop> laptop) {
         this.laptop = laptop;
     }
 
