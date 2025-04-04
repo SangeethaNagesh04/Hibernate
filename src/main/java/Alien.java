@@ -10,7 +10,7 @@ public class Alien {
     private int aid;
     private String aname;
     private String tech;
-    @ManyToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Laptop> laptop;
 
     public int getAid() {
