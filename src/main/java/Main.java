@@ -18,16 +18,9 @@ public class Main {
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
 
-        String brand = "Hp";
 
-        Query query = session.createQuery("select brand, ram from Laptop where brand like ?1");
-        query.setParameter(1, brand);
-        List<Object[]> laptops = query.getResultList();
-
-        for (Object[] data : laptops)
-        {
-            System.out.println(data[0] + " : " + data[1]);
-        }
+        Laptop laptop = session.byId(Laptop.class).getReference(1);
+        //System.out.println(laptop);
 
         session.close();
 
