@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 
 import java.rmi.StubNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,11 +20,15 @@ public class Main {
 
         String brand = "Hp";
 
-        Query query = session.createQuery("select ram from Laptop where brand like ?1");
+        Query query = session.createQuery("select brand, ram from Laptop where brand like ?1");
         query.setParameter(1, brand);
-        List<Integer> laptops = query.getResultList();
+        List<Object[]> laptops = query.getResultList();
 
-        System.out.println(laptops);
+        for (Object[] data : laptops)
+        {
+            System.out.println(data[0] + " : " + data[1]);
+        }
+
         session.close();
 
         sf.close();
