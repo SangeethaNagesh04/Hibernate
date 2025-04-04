@@ -3,6 +3,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.rmi.StubNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,8 +22,8 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        session.merge(s);
-
+        Student s1 = session.get(Student.class, 104);
+        session.remove(s1);
         transaction.commit();
 
         session.close();
