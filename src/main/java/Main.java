@@ -33,7 +33,7 @@ public class Main {
 
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
-        Session session1 = sf.openSession();
+
 
         Transaction transaction = session.beginTransaction();
 
@@ -43,10 +43,12 @@ public class Main {
 
         transaction.commit();
 
-        Alien a2 = session1.get(Alien.class, 101);
-       // System.out.println(a2);
+
 
         session.close();
+        Session session1 = sf.openSession();
+        Alien a2 = session1.get(Alien.class, 101);
+        // System.out.println(a2);
         sf.close();
 
 
