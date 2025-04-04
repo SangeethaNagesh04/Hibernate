@@ -8,13 +8,13 @@ import java.rmi.StubNotFoundException;
 public class Main {
     public static void main(String[] args) {
 
-        Student s = new Student();
-        s.setRollNo(104);
-        s.setSname("nagesh");
-        s.setAge(58);
+        Alien alien = new Alien();
+        alien.setAid(101);
+        alien.setAname("sangeetha");
+        alien.setTech("java");
 
         Configuration cfg = new Configuration();
-        cfg.addAnnotatedClass(Student.class);
+        cfg.addAnnotatedClass(Alien.class);
         cfg.configure();
 
         SessionFactory sf = cfg.buildSessionFactory();
@@ -22,8 +22,8 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        Student s1 = session.get(Student.class, 104);
-        session.remove(s1);
+        session.persist(alien);
+
         transaction.commit();
 
         session.close();
