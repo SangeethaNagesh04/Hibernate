@@ -17,14 +17,13 @@ public class Main {
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
 
-        Query query = session.createQuery("from Laptop where brand='Hp'");
+        String brand = "Hp";
 
-        List<Laptop> laptops = query.getResultList();
+        Query query = session.createQuery("select ram from Laptop where brand like ?1");
+        query.setParameter(1, brand);
+        List<Integer> laptops = query.getResultList();
 
-        for (Laptop laptop : laptops) {
-            System.out.println(laptop);
-        }
-
+        System.out.println(laptops);
         session.close();
 
         sf.close();
